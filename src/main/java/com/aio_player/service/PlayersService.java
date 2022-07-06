@@ -103,4 +103,9 @@ public class PlayersService implements UserDetailsService {
 		
 	}
 
+	public Object getTokenData(String token) {
+		String data =bCryptPasswordEncoder.encode(token);
+		return data;
+	}
+
 }

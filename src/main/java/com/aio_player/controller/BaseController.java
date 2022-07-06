@@ -2,6 +2,7 @@ package com.aio_player.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.aio_player.configuration.JwtUtil;
 import com.aio_player.repository.PlayersRepository;
@@ -31,4 +32,5 @@ public abstract class BaseController {
 	
 	@Autowired
 	protected PlayersService playersService; 
+	
 }

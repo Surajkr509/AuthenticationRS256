@@ -19,5 +19,9 @@ public interface PlayersRepository extends JpaRepository<Players, Long> {
 	Optional<Players> findByUserName(String userName);
 
 	Optional<Players> findByPassword(String password);
+
+	Players findByMobNo(String mobNo);
+
+	Players findByOtp(String otp);
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import com.aio_player.model.Players;
 import com.aio_player.service.PlayerDetailsImpl;
 
 import io.jsonwebtoken.ExpiredJwtException;
@@ -85,7 +86,12 @@ public class JwtUtil {
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(SignatureAlgorithm.RS256, getPrivateKey()).compact();
 	}
-
+	
+	public String generateJwtTokenForMobLogin(Players user) {
+		return Jwts.builder().setSubject((user.getEmail())).setIssuedAt(new Date())
+				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
+	}
 	
 	public String getUserNameFromJwtToken(String token) {
 		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
